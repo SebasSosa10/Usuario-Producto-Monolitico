@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Register</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet"> <!-- FontAwesome for icons -->
+  <style>
+    body {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(to bottom, #6a11cb, #2575fc);
+      margin: 0;
+      flex-direction: column;
+    }
+
+    /* Estilos del Navbar */
+    .navbar {
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.2);
+      backdrop-filter: blur(10px);
+      position: fixed;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .navbar a {
+      color: white !important;
+    }
+
+    .register-form {
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      max-width: 400px;
+      width: 100%;
+      backdrop-filter: blur(10px);
+      color: white;
+      margin-top: 100px;
+    }
+
+    .register-form .form-control {
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.1);
+      color: white;
+      border: none;
+    }
+
+    .register-form .form-control::placeholder {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .register-form .btn {
+      border-radius: 5px;
+      background-color: #6a11cb;
+    }
+
+    .register-form .btn:hover {
+      background-color: #2575fc;
+    }
+
+    .register-form .user-icon {
+      font-size: 60px;
+      margin-bottom: 15px;
+    }
+
+    .register-form a {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .register-form a:hover {
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="container-fluid">
+    <a class="navbar-brand text-white" th:href="@{/user/log}">Close Session</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/product/formProduct}">Register Product</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/product/tableProduct}">Product List</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" th:href="@{/user/table}">User List</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Formulario de Registro -->
+<div class="register-form text-center">
+  <i class="fas fa-user-circle user-icon"></i>
+  <h2 class="mb-4">Register</h2>
+  <form th:action="@{/user/formN}" th:object="${user}" method="post">
+    <div class="mb-3">
+      <input type="text" class="form-control" id="nationalId" th:field="*{nationalId}" placeholder="National ID" required>
+    </div>
+    <div class="mb-3">
+      <input type="text" class="form-control" id="firstName" th:field="*{firstName}" placeholder="First Name" required>
+    </div>
+    <div class="mb-3">
+      <input type="text" class="form-control" id="lastName" th:field="*{lastName}" placeholder="Last Name" required>
+    </div>
+    <div class="mb-3">
+      <input type="text" class="form-control" id="address" th:field="*{address}" placeholder="Address" required>
+    </div>
+    <div class="mb-3">
+      <input type="password" class="form-control" id="password" th:field="*{password}" placeholder="Password" required>
+    </div>
+    <div class="mb-3">
+      <input type="email" class="form-control" id="email" th:field="*{email}" placeholder="Email" required>
+    </div>
+    <div class="mb-3">
+      <input type="text" class="form-control" id="username" th:field="*{username}" placeholder="Username" required>
+    </div>
+    <button type="submit" class="btn btn-primary w-100">Register</button>
+    <div th:if="${error}" class="alert alert-danger mt-3" role="alert">
+      <span th:text="${error}"></span>
+    </div>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
