@@ -6,5 +6,5 @@ ENV MYSQL_DATABASE=mydatabase
 ENV MYSQL_USER=usernormal
 ENV MYSQL_PASSWORD=root
 
-# Exponer el puerto de MySQL
+# Exponer el puerto de MySQLx
 EXPOSE 3306
